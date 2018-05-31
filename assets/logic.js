@@ -1,7 +1,7 @@
 
 //establishing our variables
 var gifSearch = "";
-var gifArray = ["Eye roll", "Facepalm", "High five"];
+var gifArray = ["eye roll", "facepalm", "high five", "lol", "okay", "whatever", "oh snap", "bye felicia"];
 
 
 //function that will eventually return our gif selection
@@ -18,15 +18,17 @@ $.ajax({
   console.log(response.data[0]);
   for(i=0; i<response.data.length; i++){
     var gifDiv = $("<div>");
-    gifDiv.addClass("col-md-3")
+    gifDiv.addClass("col-lg-4 col-md-6 col-sm-6 col-xs-12 center-block text-center pt-3 pb-3")
     var gifImg = $("<img>");
     gifImg.addClass("gif");
     gifImg.attr("src", response.data[i].images.original_still.url);
     gifImg.attr("gifPause", response.data[i].images.original_still.url);
     gifImg.attr("gifPlay", response.data[i].images.original.url);
-    gifImg.attr("state", "pause")
-    gifImg.attr("height", 150)
-    gifDiv.append(gifImg)
+    gifImg.attr("rating", response.data[i].rating);
+    gifImg.attr("state", "pause");
+    gifImg.attr("width", 240);
+    gifDiv.html("Rating: " + response.data[i].rating + "<br>");
+    gifDiv.append(gifImg);
     $("#gifDisplay").append(gifDiv);
   }
   
@@ -59,6 +61,11 @@ function generateButtons() {
   for (var i = 0; i < gifArray.length; i++) {
     var btn = $("<button>");
     btn.addClass("gif-btn");
+    btn.addClass("btn-primary");
+    btn.addClass("ml-1")
+    btn.addClass("mr-1")
+    btn.addClass("mb-1")
+    btn.addClass("mt-1")
     btn.attr("gif-name", gifArray[i]);
     btn.text(gifArray[i]);
     //append our new element, with it's class and attributes, to the button div
