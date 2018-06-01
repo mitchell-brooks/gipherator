@@ -9,7 +9,7 @@ function displayGifs() {
   $("#gifDisplay").empty();
 console.log($(this).attr("gif-name"))
 var gifSearch = $(this).attr("gif-name");
-var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=bupDeVHxY04IjX3I84ZkPu1k6WLNdFS0&q=" + gifSearch + "&limit=10&offset=0&lang=en";
+var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=bupDeVHxY04IjX3I84ZkPu1k6WLNdFS0&q=" + gifSearch + "&limit=10&offset=0&lang=en";
 
 $.ajax({
   url: queryURL,
@@ -37,11 +37,9 @@ $.ajax({
 $(document).on("click", ".gif", function() {
   console.log($(this).attr("gifPlay"));
   console.log($(this).attr("gifPause"));
-  // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+
   var state = $(this).attr("state");
-  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-  // Then, set the image's data-state to animate
-  // Else set src to the data-still value
+
   if (state === "pause") {
     $(this).attr("src", $(this).attr("gifPlay"));
     $(this).attr("state", "play");
