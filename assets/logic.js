@@ -33,10 +33,11 @@ $.ajax({
   }
   
 });
-
+};
 $(document).on("click", ".gif", function() {
   console.log($(this).attr("gifPlay"));
   console.log($(this).attr("gifPause"));
+  console.log($(this).attr("state"));
 
   var state = $(this).attr("state");
 
@@ -51,7 +52,7 @@ $(document).on("click", ".gif", function() {
   }
 });
 
-}
+
 
 function generateButtons() {
   $("#gifButtons").empty();
